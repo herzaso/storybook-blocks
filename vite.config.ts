@@ -6,10 +6,17 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   build: {
     lib: {
-      entry: resolve(__dirname, 'src/index.tsx'),
+      entry: resolve(__dirname, 'lib/index.ts'),
       name: 'storybook-blocks',
       fileName: 'storybook-blocks',
     },
+    rollupOptions: {
+      external: ['react', 'react/jsx-runtime', 'storybook'],
+      output: {
+        assetFileNames: 'assets/[name][extname]',
+        entryFileNames: '[name].js',
+      }
+    }
   },
   plugins: [react()],
 })
